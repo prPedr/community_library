@@ -4,7 +4,7 @@ import db from "../config/bancoDados.js"
 
 db.run(
     `CREATE TABLE IF NOT EXISTS usuarios (
-        id INTEGER PRIMARY KEY AUTO INCREMENT,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         nomeUsuario TEXT UNIQUE NOT NULL,
         email TEXT UNIQUE NOT NULL,
         senha TEXT NOT NULL,
@@ -25,7 +25,7 @@ function criarUsuarioRepositories(novoUsuario) {
                 if (err) {
                     reject(err)
                 } else {
-                    resolve({mensagem: "Usuario criado"})
+                    resolve({id: this.ultimoID, ...novoUsuario})
                 }
             }
         )
