@@ -32,6 +32,25 @@ function criarUsuarioRepositories(novoUsuario) {
     })
 }
 
+function procurarUsuarioPorEmail(email) {
+    return new Promise((resolve, reject) => {
+        db.get(
+            `SELECT id, nomeUsuario, email, avatar
+            FROM usuarios
+            WHERE email = ?`,
+
+            [email], (err, row => {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(row)
+                }
+            })
+        )
+    })
+}
+
 export default {
-    criarUsuarioRepositories
+    criarUsuarioRepositories,
+    procurarUsuarioPorEmail
 }
