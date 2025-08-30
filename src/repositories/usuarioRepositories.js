@@ -1,5 +1,3 @@
-// Se conecta ao banco de dados para fazer as requisicoes que necessitamos
-
 import db from "../config/bancoDados.js"
 
 db.run(
@@ -32,25 +30,23 @@ function criarUsuarioRepositories(novoUsuario) {
     })
 }
 
-function procurarUsuarioPorEmail(email) {
+function procurarEmailRepositories(email) {
     return new Promise((resolve, reject) => {
         db.get(
             `SELECT id, nomeUsuario, email, avatar
             FROM usuarios
-            WHERE email = ?`,
-
-            [email], (err, row => {
+            WHERE email = ?`, [email], (err, linhaUsuario) => {
                 if (err) {
                     reject(err)
                 } else {
-                    resolve(row)
+                    resolve(linhaUsuario)
                 }
-            })
+            }
         )
     })
 }
 
 export default {
     criarUsuarioRepositories,
-    procurarUsuarioPorEmail
+    procurarEmailRepositories
 }

@@ -1,5 +1,5 @@
-import express from "express"
-import usuarioRoutes from "./src/routes/usuarioRoutes.js"
+import express, { json } from "express"
+import usuarioRoutes from "../community_library/src/routes/usuarioRoutes.js"
 
 const app = express()
 

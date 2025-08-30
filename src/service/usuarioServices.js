@@ -1,12 +1,14 @@
-import usuariosRepositories from "../repositories/usuarioRepositories.js"
+import usuarioRepositories from "../repositories/usuarioRepositories.js"
 
-async function criarUsuarioService(novoUsuario) {
-    const procurarUsuario = await usuariosRepositories.procurarUsuarioPorEmail(novoUsuario.email)
-    if (procurarUsuario) throw new Error("E-mail já cadastrado")
-    const usuario = await usuariosRepositories.criarUsuarioRepositories(novoUsuario)
+async function criarUsuarioServices(novoUsuario) {
+    const procurarUsuario = await usuarioRepositories.procurarEmailRepositories(novoUsuario.email)
+    if (procurarUsuario) {
+        throw new Error("Usuario existente no sistema")
+    }
+    const usuario = await usuarioRepositories.criarUsuarioRepositories(novoUsuario)
     return usuario
 }
 
 export default {
-    criarUsuarioService
+    criarUsuarioServices
 }
